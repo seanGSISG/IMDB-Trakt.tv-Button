@@ -12,12 +12,12 @@
 (function() {
   'use strict';
 
-  // Extract IMDb ID from the URL, e.g., "/title/tt2582802/"
+  // Extract the IMDb id from the URL (e.g., "tt2582802")
   const parts = window.location.pathname.split('/');
-  const imdbId = parts[2]; // "tt2582802"
-  if (!imdbId) return; // Exit if not found
+  const imdbId = parts[2];
+  if (!imdbId) return;
 
-  // Create the button element linking to Trakt
+  // Create the button/link
   let a = document.createElement('a');
   a.href = `https://trakt.tv/search/imdb/${imdbId}`;
   a.style.display = 'inline-block';
@@ -26,14 +26,13 @@
   a.style.backgroundImage = 'url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAF+0lEQVR4n...")';
   a.title = 'Trakt.tv';
 
-  // Try finding a container in the new layout; fallback to the old class if needed.
-  let container = document.querySelector('.TitleBlock__TitleContainer-sc-1nlhx7j-1') ||
-                  document.querySelector('.title_wrapper');
-  if (container) {
-    // Insert the button as a child of the container (adjust the insertion index as desired)
-    container.insertBefore(a, container.firstChild);
+  // Try inserting after the main <h1> title, which is common to the new design.
+  let title = document.querySelector('h1');
+  if (title) {
+    // Insert the button right after the h1 element
+    title.parentNode.insertBefore(a, title.nextSibling);
   } else {
-    // Fallback: append the button to the body if no known container is found.
+    // Fallback: append to the body.
     document.body.appendChild(a);
   }
 })();
