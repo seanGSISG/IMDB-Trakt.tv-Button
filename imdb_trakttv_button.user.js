@@ -11,30 +11,29 @@
 
 (function() {
   'use strict';
-  
-  // Extract IMDb id from URL (e.g., "tt0111161")
+
+  // Extract IMDb ID from the URL, e.g., "/title/tt2582802/"
   const parts = window.location.pathname.split('/');
-  const imdbId = parts[2]; 
-  if (!imdbId) return; // No id found, exit
-  
-  // Create the button/link
+  const imdbId = parts[2]; // "tt2582802"
+  if (!imdbId) return; // Exit if not found
+
+  // Create the button element linking to Trakt
   let a = document.createElement('a');
   a.href = `https://trakt.tv/search/imdb/${imdbId}`;
   a.style.display = 'inline-block';
   a.style.height = '32px';
   a.style.width = '32px';
-  a.style.backgroundImage = 'url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0...")';
+  a.style.backgroundImage = 'url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAF+0lEQVR4n...")';
   a.title = 'Trakt.tv';
-  
-  // Attempt to find a new container – try IMDb’s new title container first,
-  // but fall back to the old one or append to the body if necessary.
+
+  // Try finding a container in the new layout; fallback to the old class if needed.
   let container = document.querySelector('.TitleBlock__TitleContainer-sc-1nlhx7j-1') ||
                   document.querySelector('.title_wrapper');
   if (container) {
-    // Insert the button – adjust the position as needed.
-    container.insertBefore(a, container.children[1] || container.firstChild);
+    // Insert the button as a child of the container (adjust the insertion index as desired)
+    container.insertBefore(a, container.firstChild);
   } else {
-    // Fallback: just append it to the body.
+    // Fallback: append the button to the body if no known container is found.
     document.body.appendChild(a);
   }
 })();
