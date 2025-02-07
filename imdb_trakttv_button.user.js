@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         IMDB - Trakt.tv Button
 // @namespace    https://github.com/LenAnderson/
-// @downloadURL  https://github.com/LenAnderson/IMDB-Trakt.tv-Button/raw/master/imdb_trakttv_button.user.js
+// @downloadURL  https://github.com/seanGSISG/IMDB-Trakt.tv-Button/blob/master/imdb_trakttv_button.user.js
 // @version      1.0
 // @description  Adds a button linking to the corresponding Trakt.tv page to IMDB movie, TV show, and episode pages
 // @author       LenAnderson - Updated by seanGSISG
